@@ -4,20 +4,20 @@ IoT Home Stack
 ## Telemetry Service
 Home Stack Telemetry Service, which is a microservice that collects data from various sensors by listening MQTT Topics and processes it and transmits command to a sensor by publishing to a MQTT Topic.
 - MQTT Subscription Topics
-  - `home/alok/telemetry/status` 
-  - `home/alok/telemetry/temperature`
-  - `home/alok/telemetry/humidity`
+  - `home/alok/status/<<deviceId>>`
+  - `home/alok/telemetry/temperature/<<deviceId>>`
+  - `home/alok/telemetry/humidity/<<deviceId>>`
 - MQTT Publish Topics
-  - `home/alok/device/<<deviceId>>/command`
+  - `home/alok/command/<<deviceId>>`
 ## Mirco Controllers
 ### ESP32-GeneralPurpose-1
 General purpose ESP32 microcontroller for various sensors and actuators.
 - Device ID: `esp32-general-purpose-1`
 - MQTT Subscription Topic: 
-  - `home/alok/device/esp32-general-purpose-1/command`
+  - `home/alok/command/esp32-general-purpose-1`
 - MQTT Publish Topic: 
-  - `home/alok/telemetry/temperature`
-  - `home/alok/telemetry/humidity`
+  - `home/alok/telemetry/temperature/esp32-general-purpose-1`
+  - `home/alok/telemetry/humidity/esp32-general-purpose-1`
 #### Sensors
 - DHT11 Temperature and Humidity Sensor
 - Light Sensor: Photosensitive Resistor Module
@@ -36,11 +36,11 @@ Mosquitto running on Kubernetes
 - False
 ## MQTT Topics
 ### Sensor Topics
-- `home/alok/telemetry/status`
-- `home/alok/telemetry/temperature`
-- `home/alok/telemetry/humidity`
+- `home/alok/status/esp32-general-purpose-1`
+- `home/alok/telemetry/temperature/esp32-general-purpose-1`
+- `home/alok/telemetry/humidity/esp32-general-purpose-1`
 ### Controller Topics
-- `home/alok/device/esp32-general-purpose-1/command`
+- `home/alok/command/esp32-general-purpose-1`
 ## MQTT Payloads
 ### Temperature Payload
 ```json
@@ -64,11 +64,11 @@ Mosquitto running on Kubernetes
 {
   "deviceId": "esp32-general-purpose-1",
   "status": "online",
-  "ipAddress": "192.168.1.6",
-  "cmd-topic": "home/alok/device/esp32-general-purpose-1/command"
+  "time": "",
+  "ipAddress": "192.168.1.6"
 }
 ```
-#### Offline Status
+### Offline Status
 ```json
 {
   "deviceId": "esp32-general-purpose-1",
