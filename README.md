@@ -60,7 +60,9 @@ Mosquitto running on Kubernetes
 ```json
 {
   "deviceId": "esp32-general-purpose-1",
-  "status": "online"
+  "status": "online",
+  "ipAddress": "192.168.1.6",
+  "cmd-topic": "home/alok/device/esp32-general-purpose-1/command"
 }
 ```
 ### Offline Status
