@@ -7,12 +7,12 @@ Home Stack Telemetry Service, which is a microservice that collects data from va
     - `home/alok/telemetry/temperature`
     - `home/alok/telemetry/humidity`
 - MQTT Publish Topics
-    - `home/alok/esp32-general-purpose-1/command`
+    - `home/alok/device/<<deviceId>>/command`
 ## Mirco Controllers
 ### ESP32-GeneralPurpose-1
 General purpose ESP32 microcontroller for various sensors and actuators.
 - Device ID: `esp32-general-purpose-1`
-- MQTT Subscription Topic: `home/alok/esp32-general-purpose-1/command`
+- MQTT Subscription Topic: `home/alok/device/esp32-general-purpose-1/command`
 - MQTT Publish Topic: 
   - `home/alok/telemetry/temperature`
   - `home/alok/telemetry/humidity`
@@ -30,7 +30,7 @@ General purpose ESP32 microcontroller for various sensors and actuators.
 - `home/alok/telemetry/temperature`
 - `home/alok/telemetry/humidity`
 ### Controller Topics
-- `home/alok/esp32-general-purpose-1/command`
+- `home/alok/device/esp32-general-purpose-1/command`
 ## MQTT Payloads
 ### Temperature Payload
 ```json
