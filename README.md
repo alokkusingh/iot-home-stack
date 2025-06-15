@@ -67,7 +67,7 @@ Mosquitto running on Kubernetes
   "cmd-topic": "home/alok/device/esp32-general-purpose-1/command"
 }
 ```
-### Offline Status
+#### Offline Status
 ```json
 {
   "deviceId": "esp32-general-purpose-1",
