@@ -47,7 +47,7 @@ require_certificate true
 # Certificate Authority certificates that will be considered trusted when
 # checking incoming client certificates.
 # cafile defines the path to a file containing the CA certificates.
-cafile /etc/tls/tls.crt
+cafile /etc/ca/mqtt-signer-ca.crt
 
 #If require_certificate is true, you may set use_identity_as_username to true to use the CN value from the client certificate as a username. 
 #If this is true, the password_file option will not be used for this listener.
@@ -105,7 +105,7 @@ topic read home/alok/command/esp32-general-purpose-1
   "ipAddress": "192.168.1.6"
 }
 ```
-### Offline Status
+#### Offline Status
 ```json
 {
   "deviceId": "esp32-general-purpose-1",
