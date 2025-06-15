@@ -133,10 +133,11 @@ openssl req -x509 -new -nodes -key secret/mqtt-signer-ca.key -sha256 -days 365 -
 openssl genrsa -out secret/server.key 2048
 ```
 ```shell
-openssl req -new -sha256 -out secret/server.csr -key secret/server.key -subj /C=IN/ST=KA/L=Bengaluru/O=Home/CN=192.168.1.201
+#openssl req -new -sha256 -out secret/server.csr -key secret/server.key -subj /C=IN/ST=KA/L=Bengaluru/O=Home/CN=192.168.1.201
+openssl req -new -out secret/server.csr -key secret/server.key -config secret/openssl-domian-csr.conf
 ```
 ```shell
-openssl x509 -req -in secret/server.csr -CA secret/mqtt-signer-ca.crt -CAkey secret/mqtt-signer-ca.key -CAcreateserial -out secret/server.crt -days 360 -sha256
+openssl x509 -req -in secret/server.csr -CA secret/mqtt-signer-ca.crt -CAkey secret/mqtt-signer-ca.key -CAcreateserial -out secret/server.crt -days 360 -sha256 -copy_extensions copy
 ```
 ### Client Certificate - home-telemetry-service
 ```shell
