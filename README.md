@@ -55,7 +55,7 @@ Mosquitto running on Kubernetes
   "unit": "%"
 }
 ```
-### Sensor Status Payload
+### Device Status Payload
 #### Online Status
 ```json
 {
@@ -79,7 +79,7 @@ Mosquitto running on Kubernetes
   "command": "turn_on_fan"
 }
 ```
-## TLS
+## mTLS (Mutual TLS)
 ### Root Certificate
 ```shell
 openssl genrsa -des3 -out mqtt-signer-ca.key 2048
