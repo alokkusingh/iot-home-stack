@@ -25,7 +25,12 @@ General purpose ESP32 microcontroller for various sensors and actuators.
 - Camera Module
 - Motion Sensor: HC-SR501 PIR
 ## MQTT Broker
-### Mosquitto on Kubernetes
+Mosquitto running on Kubernetes
+### QoS
+- Publish QoS: 1
+- Subscribe QoS: 1
+### Clean State
+- False
 ## MQTT Topics
 ### Sensor Topics
 - `home/alok/telemetry/status`
