@@ -13,7 +13,8 @@ Home Stack Telemetry Service, which is a microservice that collects data from va
 ### ESP32-GeneralPurpose-1
 General purpose ESP32 microcontroller for various sensors and actuators.
 - Device ID: `esp32-general-purpose-1`
-- MQTT Subscription Topic: `home/alok/device/esp32-general-purpose-1/command`
+- MQTT Subscription Topic: 
+  - `home/alok/device/esp32-general-purpose-1/command`
 - MQTT Publish Topic: 
   - `home/alok/telemetry/temperature`
   - `home/alok/telemetry/humidity`
