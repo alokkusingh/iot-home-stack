@@ -4,10 +4,11 @@ IoT Home Stack
 ## Telemetry Service
 Home Stack Telemetry Service, which is a microservice that collects data from various sensors by listening MQTT Topics and processes it and transmits command to a sensor by publishing to a MQTT Topic.
 - MQTT Subscription Topics
-    - `home/alok/telemetry/temperature`
-    - `home/alok/telemetry/humidity`
+  - `home/alok/telemetry/status` 
+  - `home/alok/telemetry/temperature`
+  - `home/alok/telemetry/humidity`
 - MQTT Publish Topics
-    - `home/alok/device/<<deviceId>>/command`
+  - `home/alok/device/<<deviceId>>/command`
 ## Mirco Controllers
 ### ESP32-GeneralPurpose-1
 General purpose ESP32 microcontroller for various sensors and actuators.
@@ -27,6 +28,7 @@ General purpose ESP32 microcontroller for various sensors and actuators.
 ### Mosquitto on Kubernetes
 ## MQTT Topics
 ### Sensor Topics
+- `home/alok/telemetry/status`
 - `home/alok/telemetry/temperature`
 - `home/alok/telemetry/humidity`
 ### Controller Topics
@@ -46,6 +48,21 @@ General purpose ESP32 microcontroller for various sensors and actuators.
   "deviceId": "esp32-general-purpose-1",
   "humidity": 60,
   "unit": "%"
+}
+```
+### Sensor Status Payload
+#### Online Status
+```json
+{
+  "deviceId": "esp32-general-purpose-1",
+  "status": "online"
+}
+```
+### Offline Status
+```json
+{
+  "deviceId": "esp32-general-purpose-1",
+  "status": "offline"
 }
 ```
 ### Command Payload
