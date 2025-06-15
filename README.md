@@ -27,8 +27,10 @@ General purpose ESP32 microcontroller for various sensors and actuators.
 ## MQTT Broker
 Mosquitto running on Kubernetes
 ### QoS
-- Publish QoS: 1
-- Subscribe QoS: 1
+#### Status Topic
+- QoS 1
+#### Telemetry Topics
+- QoS 0
 ### Clean State
 - False
 ## MQTT Topics
