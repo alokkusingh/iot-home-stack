@@ -105,7 +105,7 @@ topic read home/alok/command/esp32-general-purpose-1
   "ipAddress": "192.168.1.6"
 }
 ```
-### Offline Status
+#### Offline Status
 ```json
 {
   "deviceId": "esp32-general-purpose-1",
