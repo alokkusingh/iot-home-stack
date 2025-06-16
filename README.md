@@ -101,7 +101,7 @@ topic read home/alok/command/esp32-general-purpose-1
 {
   "deviceId": "esp32-general-purpose-1",
   "status": "online",
-  "time": "",
+  "lastSeen": "2023-10-01T12:00:00Z",
   "ipAddress": "192.168.1.6"
 }
 ```
@@ -109,7 +109,8 @@ topic read home/alok/command/esp32-general-purpose-1
 ```json
 {
   "deviceId": "esp32-general-purpose-1",
-  "status": "offline"
+  "status": "offline",
+  "lastSeen": "2023-10-01T12:00:00Z"
 }
 ```
 ### Command Payload
@@ -151,11 +152,30 @@ openssl x509 -req -in secret/mqtt.client.home-telemetry-svc.csr -CA secret/mqtt-
 ```
 ### Client Certificate - esp32-general-purpose-1
 ```shell
-openssl genrsa -out mqtt.client.esp32-general-purpose-1.key 2048
+openssl genrsa -out secret/mqtt.client.esp32-general-purpose-1.key 2048
 ```
 ```shell
-openssl req -new -sha256 -key mqtt.client.esp32-general-purpose-1.key -subj /C=IN/ST=KA/L=Bengaluru/O=Home/CN=esp32-general-purpose-1 -out mqtt.client.esp32-general-purpose-1.csr
+openssl req -new -sha256 -key secret/mqtt.client.esp32-general-purpose-1.key -subj /C=IN/ST=KA/L=Bengaluru/O=Home/CN=esp32-general-purpose-1 -out secret/mqtt.client.esp32-general-purpose-1.csr
 ```
 ```shell
-openssl x509 -req -in mqtt.client.esp32-general-purpose-1.csr -CA mqtt-signer-ca.crt -CAkey mqtt-signer-ca.key -CAcreateserial -out mqtt.client.esp32-general-purpose-1.crt -days 365 -sha256
+openssl x509 -req -in secret/mqtt.client.esp32-general-purpose-1.csr -CA secret/mqtt-signer-ca.crt -CAkey secret/mqtt-signer-ca.key -CAcreateserial -out secret/mqtt.client.esp32-general-purpose-1.crt -days 365 -sha256
+```
+## Miscellaneous
+```shell
+mosquitto_pub --cafile secret/mqtt-signer-ca.crt --cert secret/mqtt.client.esp32-general-purpose-1.crt --key secret/mqtt.client.esp32-general-purpose-1.key -h khbr -p 31883 -q 1 -t foo/bar -i esp32-general-purpose-1 --tls-version tlsv1.3 -m "Hello" -d
+```
+```shell
+mosquitto_pub --cafile secret/mqtt-signer-ca.crt --cert secret/mqtt.client.esp32-general-purpose-1.crt --key secret/mqtt.client.esp32-general-purpose-1.key -h 192.168.1.201 -p 31883 -q 1 -t foo/bar -i esp32-general-purpose-1 --tls-version tlsv1.2 -m "Hello" -d --will-topic foo/will --will-payload "offline" --will-qos 1
+```
+```shell
+mosquitto_sub --cafile secret/mqtt-signer-ca.crt --cert secret/mqtt.client.esp32-general-purpose-1.crt --key secret/mqtt.client.esp32-general-purpose-1.key -h khbr -p 31883 -q 1 -t foo/bar -i esp32-general-purpose-1 --tls-version tlsv1.2 -d
+```
+```shell
+openssl s_client -connect khbr:31883 -showcerts -CAfile secret/mqtt-signer-ca.crt
+```
+```shell
+openssl req -noout -text -in secret/server.csr
+```
+```shell
+openssl x509 -noout -text -in secret/server.crt
 ```
