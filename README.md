@@ -54,7 +54,7 @@ cafile /etc/ca/mqtt-signer-ca.crt
 #This takes priority over use_subject_as_username if both are set to true.
 use_identity_as_username true
 
-acl_file tbd
+acl_file /etc/acl/acl.conf
 ```
 ### ACL (Access Control List)
 ```text
@@ -165,7 +165,7 @@ openssl x509 -req -in secret/mqtt.client.esp32-general-purpose-1.csr -CA secret/
 mosquitto_pub --cafile secret/mqtt-signer-ca.crt --cert secret/mqtt.client.esp32-general-purpose-1.crt --key secret/mqtt.client.esp32-general-purpose-1.key -h khbr -p 31883 -q 1 -t foo/bar -i esp32-general-purpose-1 --tls-version tlsv1.3 -m "Hello" -d
 ```
 ```shell
-mosquitto_pub --cafile secret/mqtt-signer-ca.crt --cert secret/mqtt.client.esp32-general-purpose-1.crt --key secret/mqtt.client.esp32-general-purpose-1.key -h 192.168.1.201 -p 31883 -q 1 -t foo/bar -i esp32-general-purpose-1 --tls-version tlsv1.2 -m "Hello" -d --will-topic foo/will --will-payload "offline" --will-qos 1
+mosquitto_pub --cafile secret/mqtt-signer-ca.crt --cert secret/mqtt.client.esp32-general-purpose-1.crt --key secret/mqtt.client.esp32-general-purpose-1.key -h 192.168.1.201 -p 31883 -q 1 -t home/alok/telemetry/temperature/esp32-general-purpose-1 -i esp32-general-purpose-1 --tls-version tlsv1.2 -m "Hello" -d --will-topic home/alok/status/esp32-general-purpose-1 --will-payload "offline" --will-qos 1
 ```
 ```shell
 mosquitto_sub --cafile secret/mqtt-signer-ca.crt --cert secret/mqtt.client.esp32-general-purpose-1.crt --key secret/mqtt.client.esp32-general-purpose-1.key -h khbr -p 31883 -q 1 -t foo/bar -i esp32-general-purpose-1 --tls-version tlsv1.2 -d
